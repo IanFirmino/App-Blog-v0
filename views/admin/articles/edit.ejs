@@ -1,0 +1,62 @@
+<%- include('../../../partials/header.ejs') %>
+<%- include('../../../partials/navbar.ejs') %>
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Editar Artigo</h2>
+        </div>
+        <div class="card-body">
+            <form action="/articles/update" method="POST">
+                <input type="hidden" name="id" value="<%= article.id %>">
+                <h6>Título do Artigo</h6>
+                <input class="form-control" type="text" name="tittle" placeholder="Altere o título do artigo" value="<%= article.tittle %>">
+                <br>
+                <h6>Categoria do Artigo</h6>
+                <select name="category" class="form-control">
+                    <% categories.forEach((category) => { %>
+
+                        <% if(category.id == article.categoryId) { %>
+                            <option selected="selected"><%= article.category.tittle %></option>
+                        <%}else { %>
+                            <option value="<%= category.id %>"><%= category.tittle %></option>
+                        <% } %>
+                        
+                    <% }) %> 
+                    
+                </select>
+                <br>
+                <textarea class="form-control" name="body" id="article" placeholder="Descrição do artigo"><%- article.body %></textarea>
+                <br>
+                <button class="btn btn-success">Alterar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../../../partials/footer.ejs') %>
+
+<script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: "#article",
+        plugins: [
+            'advlist',
+            'autolink',
+            'link',
+            'image',
+            'lists',
+            'preview',
+            'searchreplace',
+            'wordcount',
+            'fullscreen',
+            'insertdatetime',
+            'media',
+            'save',
+            'table',
+            'emoticons',
+        ]
+        
+        });
+</script>

@@ -1,0 +1,51 @@
+
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/homenavbar.ejs') %>
+
+<body>
+    
+    <div class="container">
+
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">Bem-vindo</h1>
+            <p class="lead">Este é um simples blog para treinamento de desenvolvimento.</p>
+            <hr class="my-4">
+            <p>Mussum Ipsum, cacilds vidis litro abertis. Quem num gosta di mé, boa gentis num é. Interagi no mé, 
+                cursus quis, vehicula ac nisi. Suco de cevadiss deixa as pessoas mais interessantis. Diuretics paradis num copo é motivis de denguis.</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
+            </p>
+          </div>
+
+        <hr>
+        <% articles.rows.forEach(article => { %>
+            <div class="card">
+                <div class="card-header">
+                    <h4><%= article.tittle %></h4>
+                </div>
+                <div class="card-body">
+                    <a href="/article/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+                </div>
+            </div>
+            <br>
+        <% }) %>
+
+        <div class="row">
+            <div class="col col-12">
+                <% if(next){ %>
+                    <a style="float:right" href="/articles/page/<%= page + 1 %>"> Next >></a>
+                <% } %>
+                <% if(previous){ %>
+                    <a style="float:left" href="/articles/page/<%= page - 1 %>">  << Previous</a>
+                <% } %>
+            </div>
+        </div> 
+        <br>
+        <hr>
+
+    </div>
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
